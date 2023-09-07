@@ -1,0 +1,80 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'main/css/style-main.css' %}" />
+    <link rel="stylesheet" href="{% static 'main/css/style-catalog.css' %}" />
+    <title>Каталог Spolthy</title>
+  </head>
+
+  <body>
+    {% include 'header.html' %}
+    <div class="page">
+      <h1 class="centered title">Каталог упражнений Spolthy</h1>
+      <form class="search" action="" method="get">
+        <div class="search-field">
+          <input type="search" name="search" placeholder="Введите название упражнения" />
+          <button type="submit">Поиск</button>
+        </div>
+        <div class="search-tags">
+          <div class="tag">
+            <input type="checkbox" name="tags" id="tag1" value="tag1" />
+            <label for="tag1">тег1</label>
+          </div>
+          <div class="tag">
+            <input type="checkbox" name="tags" id="tag2" value="tag2" />
+            <label for="tag2">тег2</label>
+          </div>
+        </div>
+      </form>
+      <div class="content item">
+        <div class="media">
+          <video src="https://cdn.discordapp.com/attachments/899024835601133628/1147192111960162444/92.28.211.234.mp4" loop autoplay muted></video>
+        </div>
+        <div class="description">
+          <h3>Упражнение 1</h3>
+          <div class="tags">
+            <div>Тег1</div>
+            <div>Тег2</div>
+            <div>Тег3</div>
+          </div>
+          <a class="button" href="http://www.google.com">Добавить на аккаунт</a>
+        </div>
+      </div>
+      <div class="content item">
+        <div class="media">
+          <img src="https://media.discordapp.net/attachments/819150351860498433/1034718805613625374/blinky.gif" />
+        </div>
+        <div class="description">
+          <h3>Упражнение 2</h3>
+          <div class="tags">
+            <div>Тег4</div>
+            <div>Тег2</div>
+            <div>Тег1</div>
+          </div>
+          <a class="button" href="http://www.google.com">Добавить на аккаунт</a>
+        </div>
+      </div>
+      <div class="content item">
+        <div class="media">
+          <img src="http://placekitten.com/300/200" />
+        </div>
+        <div class="description">
+          <h3>Упражнение 3</h3>
+          <div class="tags">
+            <div>Тег4</div>
+            <div>Тег2</div>
+            <div>Тег1</div>
+          </div>
+          <a class="button" href="http://www.google.com">Добавить на аккаунт</a>
+        </div>
+      </div>
+      <div class="footer">
+        <p>Не нашли упражнение? Добавьте новое упражнение</p>
+        <a class="button" href="http://www.google.com">Добавить упражнение</a>
+      </div>
+    </div>
+    {% include 'footer.html' %}
+  </body>
+</html>

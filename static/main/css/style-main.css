@@ -1,0 +1,94 @@
+.button {
+    background: #2ead0e;
+    color: #fff;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    border-radius: 24px;
+    text-align: center;
+    display: block;
+    width: fit-content;
+    margin: auto;
+}
+
+.title {
+    margin-top: 8rem;
+}
+
+.centered {
+    text-align: center;
+}
+
+.leftside {
+    float: left;
+    margin-right: 45px;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    max-width: 100rem;
+    margin-bottom: 4rem;
+    border: 3px solid gray;
+    background: rgba(63, 60, 60, 0.719);
+    border-radius: 1rem;
+    padding: 2rem;
+    /* color: black; */
+    backdrop-filter: blur(30px);
+}
+
+.text {
+    flex-grow: 1;
+}
+
+.outer {
+    max-width: 1000px;
+    margin: auto;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url("background.png");
+    background-position: center;
+    color: white;
+}
+
+img {
+    border-radius: 5px;
+}
+
+header {
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid grey;
+}
+
+header > div a {
+    color: orange;
+    text-decoration: none;
+    margin-right: 2rem;
+}
+
+.logo {
+    width: 140px;
+}
+
+.left-elements {
+    align-items: center;
+    display: flex;
+    gap: 60px;
+  }
+
+.right-elements {
+    display: flex;
+    gap: 10px;
+}
+
+footer {
+    display: flex;
+    padding: 20px;
+    justify-content: center;
+    border-top: 1px solid grey;
+    color: orange;
+}

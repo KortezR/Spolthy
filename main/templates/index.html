@@ -1,0 +1,42 @@
+{% load static %}<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'main/css/style-main.css' %}" />
+    <title>Spolthy</title>
+  </head>
+
+  <body>
+    {% include 'header.html' %}
+    <h1 class="centered title">Spolthy</h1>
+    <h2 class="centered">Площадка для мониторинга и контроля спортивного образа жизни</h2>
+    <div class="outer">
+      <div class="content">
+        <img class="leftside" src="http://placekitten.com/300/200" alt="спортсмен с телефоном / ноутбуком" />
+        <div class="text">
+          <h3 class="centered">Отслеживайте свои результаты</h3>
+          <p>Ведите учет прогресса своих тренировок, чтобы всегда стремиться к улучшению</p>
+          <a class="button" href="http://www.google.com">Зарегистрироваться</a>
+        </div>
+      </div>
+      <div class="content">
+        <img class="leftside" src="http://placekitten.com/300/200" alt="человек в спортивной форме удивляется увиденному на экране" />
+        <div>
+          <h3 class="centered">Находите новые упражнения</h3>
+          <p>Наш каталог поможет Вам в поиске новых упражнений, открытии чего-то нового в уже знакомых тренировках</p>
+          <a class="button" href="catalog.html">Перейти в каталог упражнений</a>
+        </div>
+      </div>
+      <div class="content">
+        <img class="leftside" src="http://placekitten.com/300/200" alt="человек измеряет свое тело" />
+        <div>
+          <h3 class="centered">Учитывайте свое тело</h3>
+          <p>Следите за показателями своего тела, чтобы своевременно корректировать свой образ жизни</p>
+          <a class="button" href="http://www.google.com">Зарегистрироваться</a>
+        </div>
+      </div>
+    </div>
+    {% include 'footer.html' %}
+  </body>
+</html>
