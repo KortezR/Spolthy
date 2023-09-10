@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block styles %}
+
+    {% endblock %}
+    <title>
+      {% block title %}
+
+      {% endblock %}
+    </title>
+  </head>
+  <body>
+    <header>
+      <div class="left-elements">
+        <div>
+          <a href="{% url 'main_page' %}"><img class="logo" src="{% static 'main/img/logo.png' %}" alt="main" /></a>
+        </div>
+        <div>
+          <a href="catalog">Упражнения</a>
+        </div>
+      </div>
+      <div class="right-elements">
+        <div>
+          <a href="#">Регистрация</a>
+        </div>
+        <div>
+          <a href="#">Вход</a>
+        </div>
+      </div>
+    </header>
+    {% block content %}
+
+    {% endblock %}
+    <footer>
+      <div>KortezR 2023</div>
+    </footer>
+  </body>
+</html>
