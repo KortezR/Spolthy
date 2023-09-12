@@ -10,6 +10,5 @@ class Exercise(models.Model):
 
     name = models.CharField(unique=True, max_length=100)
     category = models.CharField(choices=EXCERCISE_CATEGORIES, max_length=2)
-    media = models.ImageField(upload_to='media')
+    media = models.ImageField(upload_to='uploads')
     description = models.TextField()
-    videolink = models.URLField()

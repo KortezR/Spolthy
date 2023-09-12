@@ -23,7 +23,7 @@
     border-radius: 1rem;
 }
 
-.item>.description {
+.item>.exercise {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,12 +31,12 @@
     flex: 1;
 }
 
-.description>.button {
+.exercise>.button {
     text-shadow: none;
     margin: 0;
 }
 
-.description>p {
+.exercise>p {
     text-overflow: ellipsis;
     overflow: hidden;
     /* max-width: 850px; */
@@ -99,13 +99,13 @@ button {
     cursor: pointer;
 }
 
-.tags {
+.category {
     display: flex;
     gap: 10px;
     margin-bottom: 1rem;
 }
 
-.tags > div {
+.category > div {
     background: grey;
     padding: 0.5rem 1rem;
     border-radius: 24px;
