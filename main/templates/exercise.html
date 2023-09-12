@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block styles %}
-  <link rel="stylesheet" href="{% static 'main/css/style-main.css' %}" />
   <link rel="stylesheet" href="{% static 'main/css/style-catalog.css' %}" />
   <link rel="stylesheet" href="{% static 'main/css/style-exercise.css' %}" />
 {% endblock %}
@@ -12,18 +11,19 @@
 {% endblock %}
 
 {% block content %}
+  <h2 class="centered">{{ exercise.name }}</h2>
+  <div class="category">
+    <p>Категория:</p>
+    <div>{{ exercise.get_category_display }}</div>
+  </div>
   <div class="content item">
     <div class="media">
       <img src="{{ exercise.media.url }}" />
     </div>
     <div class="exercise">
       {% if exercise %}
-        <h3>{{ exercise.name }}</h3>
-        <div class="category">
-          <div>{{ exercise.category }}</div>
-        </div>
         <div class="description">
-          {{ exercise.description }}
+          <pre>{{ exercise.description }}</pre>
         </div>
         <a class="button" href="http://www.google.com">Добавить на аккаунт</a>
       {% endif %}

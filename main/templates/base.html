@@ -4,6 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'main/css/style-main.css' %}" />
     {% block styles %}
 
     {% endblock %}
@@ -32,9 +33,11 @@
         </div>
       </div>
     </header>
-    {% block content %}
+    <div class="main">
+      {% block content %}
 
-    {% endblock %}
+      {% endblock %}
+    </div>
     <footer>
       <div>KortezR 2023</div>
     </footer>
