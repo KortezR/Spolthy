@@ -10,7 +10,17 @@ def main_page(request):
 
 def catalog(request):
     categories = Exercise.EXCERCISE_CATEGORIES
-    exercises = Exercise.objects.all()
+    if request.GET:
+        search_name = unquote(request.GET['search'])
+        search_category = request.GET.get('category', '')
+        if search_category:
+            exercises = Exercise.objects.filter(category=search_category)
+            if exercises:
+                exercises = exercises.filter(name__icontains=search_name)
+        else:
+            exercises = Exercise.objects.filter(name__icontains=search_name)
+    else:
+        exercises = Exercise.objects.all()
     return render(request, 'catalog.html', {'exercises': exercises, 'categories': categories})
 
 
@@ -20,13 +30,3 @@ def exercise(request, exercise_id):
     except:
         e = False
     return render(request, 'exercise.html', {'exercise': e})
-
-
-def search(request):
-    try:
-        categories = Exercise.EXCERCISE_CATEGORIES
-        search = unquote(request.GET['search'])
-        exercises = Exercise.objects.filter(name__icontains=search)
-        return render(request, 'catalog.html', {'exercises': exercises, 'categories': categories})
-    except KeyError:
-        return render(request, 'catalog.html')

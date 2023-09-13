@@ -11,20 +11,18 @@
 
 {% block content %}
   <h1 class="centered title">Каталог упражнений Spolthy</h1>
-  <form class="search" action="{% url 'search' %}" method="get">
+  <form class="search" action="{% url 'catalog' %}" method="get">
     <div class="search-field">
       <input type="text" name="search" placeholder="Поиск по названию упражнения" />
       <button type="submit">Поиск</button>
     </div>
     <div class="search-tags">
+      {% for category in categories %}
       <div class="tag">
-        <input type="radio" name="tags" id="tag1" value="tag1" />
-        <label for="tag1">тег1</label>
+        <input type="radio" name="category" id="{{category.0}}" value="{{category.0}}" />
+        <label for="{{category.0}}">{{category.1}}</label>
       </div>
-      <div class="tag">
-        <input type="radio" name="tags" id="tag2" value="tag2" />
-        <label for="tag2">тег2</label>
-      </div>
+      {% endfor %}
     </div>
   </form>
   {% for exercise in exercises %}
