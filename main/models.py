@@ -4,7 +4,7 @@ from django.db import models
 # Create your models here.
 class Exercise(models.Model):
 
-    EXCERCISE_CATEGORIES = [('ch', "грудь"), ('bi', "бицепс"), ('ha', "руки"),
+    EXCERCISE_CATEGORIES = [('ch', "грудь"), ('bi', "бицепс"), ('ba', "спина"),
                             ('tr', "трицепс"), ('le', "ноги"), ('sh', "плечи"),
                             ('ca', "кардио"),]
 

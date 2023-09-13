@@ -1,35 +1,35 @@
-.description{
+.description {
     text-align: justify;
 }
 
-.category{
+.category {
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-.category>p{
+.category>p {
     margin: 0;
 }
 
-.item{
+.item {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
     padding-top: 1rem;
 }
 
-.item>.exercise{
+.item>.exercise {
     align-items: center;
-    gap:1rem;
+    gap: 1rem;
 }
 
-.item>.media{
+.item>.media {
     width: auto;
     height: 400px;
 }
 
-pre{
+pre {
     white-space: pre-wrap;
     font-family: Arial, Helvetica, sans-serif;
 }

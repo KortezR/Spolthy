@@ -11,9 +11,9 @@
 
 {% block content %}
   <h1 class="centered title">Каталог упражнений Spolthy</h1>
-  <form class="search" action="" method="get">
+  <form class="search" action="{% url 'search' %}" method="get">
     <div class="search-field">
-      <input type="search" name="search" placeholder="Введите название упражнения" />
+      <input type="text" name="search" placeholder="Поиск по названию упражнения" />
       <button type="submit">Поиск</button>
     </div>
     <div class="search-tags">
@@ -27,50 +27,18 @@
       </div>
     </div>
   </form>
-  <div class="content item">
-    <div class="media">
-      <video src="https://cdn.discordapp.com/attachments/899024835601133628/1147192111960162444/92.28.211.234.mp4" loop autoplay muted></video>
-    </div>
-    <div class="exercise">
-      <h2>Упражнение 1</h2>
-      <div class="category">
-        <div>Тег1</div>
-        <div>Тег2</div>
-        <div>Тег3</div>
+  {% for exercise in exercises %}
+    <div class="content item">
+      <div class="media">
+        <img src="{{ exercise.media.url }}" />
       </div>
-      <a class="button" href="http://www.google.com">Добавить на аккаунт</a>
-    </div>
-  </div>
-  <div class="content item">
-    <div class="media">
-      <img src="https://media.discordapp.net/attachments/819150351860498433/1034718805613625374/blinky.gif" />
-    </div>
-    <div class="exercise">
-      <h2>Упражнение 2</h2>
-      <div class="category">
-        <div>Тег4</div>
-        <div>Тег2</div>
-        <div>Тег1</div>
+      <div class="exercise">
+        <a href="{% url 'exercise' exercise.id %}"><h2>{{ exercise.name | capfirst }}</h2></a>
+        <div class="category">
+          <div>{{ exercise.get_category_display }}</div>
+        </div>
+        <a class="button" href="http://www.google.com">Добавить на аккаунт</a>
       </div>
-      <a class="button" href="http://www.google.com">Добавить на аккаунт</a>
     </div>
-  </div>
-  <div class="content item">
-    <div class="media">
-      <img src="http://placekitten.com/300/200" />
-    </div>
-    <div class="exercise">
-      <h2>Упражнение 3</h2>
-      <div class="category">
-        <div>Тег4</div>
-        <div>Тег2</div>
-        <div>Тег1</div>
-      </div>
-      <a class="button" href="http://www.google.com">Добавить на аккаунт</a>
-    </div>
-  </div>
-  <div class="footer">
-    <p>Не нашли упражнение? Добавьте новое упражнение</p>
-    <a class="button" href="http://www.google.com">Добавить упражнение</a>
-  </div>
+  {% endfor %}
 {% endblock %}

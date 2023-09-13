@@ -77,7 +77,7 @@
     gap: 0.5rem;
 }
 
-.search-field > input {
+.search-field>input {
     width: 100%;
     height: 3rem;
     padding-left: 10px;
@@ -100,10 +100,14 @@ button {
     margin-bottom: 1rem;
 }
 
-.category > div {
+.category>div {
     background: grey;
     padding: 0.5rem 1rem;
     border-radius: 24px;
     text-align: center;
     width: fit-content;
+}
+
+.exercise>a {
+    color: white
 }
