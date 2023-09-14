@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Exercise
 from urllib.parse import unquote
+from .forms import AddExercise
 
 
 # Create your views here.
@@ -30,3 +31,15 @@ def exercise(request, exercise_id):
     except:
         e = False
     return render(request, 'exercise.html', {'exercise': e})
+
+
+def add_exercise(request):
+    if request.method == "POST":
+        form = AddExercise(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+            return redirect("catalog")
+    else:
+        form = AddExercise()
+    return render(request, 'add_exercise.html', {'form': form})

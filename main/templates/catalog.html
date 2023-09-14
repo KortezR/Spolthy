@@ -18,10 +18,10 @@
     </div>
     <div class="search-tags">
       {% for category in categories %}
-      <div class="tag">
-        <input type="radio" name="category" id="{{category.0}}" value="{{category.0}}" />
-        <label for="{{category.0}}">{{category.1}}</label>
-      </div>
+        <div class="tag">
+          <input type="radio" name="category" id="{{ category.0 }}" value="{{ category.0 }}" />
+          <label for="{{ category.0 }}">{{ category.1 }}</label>
+        </div>
       {% endfor %}
     </div>
   </form>
@@ -31,7 +31,7 @@
         <img src="{{ exercise.media.url }}" />
       </div>
       <div class="exercise">
-        <a href="{% url 'exercise' exercise.id %}"><h2>{{ exercise.name | capfirst }}</h2></a>
+        <a href="{% url 'exercise' exercise.id %}"><h2>{{ exercise.name|capfirst }}</h2></a>
         <div class="category">
           <div>{{ exercise.get_category_display }}</div>
         </div>
@@ -39,4 +39,8 @@
       </div>
     </div>
   {% endfor %}
+  <div class="footer">
+    <p>Не нашли упражнение? Добавьте новое упражнение</p>
+    <a class="button" href="{% url 'add_exercise' %}">Добавить упражнение</a>
+  </div>
 {% endblock %}
