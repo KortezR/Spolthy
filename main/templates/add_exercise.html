@@ -3,6 +3,7 @@
 
 {% block styles %}
   <link rel="stylesheet" href="{% static 'main/css/style-catalog.css' %}" />
+  <link rel="stylesheet" href="{% static 'main/css/style-exercise_add.css' %}" />
 {% endblock %}
 
 {% block title %}
@@ -10,10 +11,12 @@
 {% endblock %}
 
 {% block content %}
-<h3>Добавление упражнения</h3>
+<h2 class="centered">Добавление упражнения</h2>
+<div class="content">
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_div }}
-    <button type="submit">Добавить</button>
+    <button class="button" type="submit">Добавить</button>
 </form>
+</div>
 {% endblock  %}
