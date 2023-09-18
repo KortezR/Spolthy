@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Exercise
 from urllib.parse import unquote
-from .forms import AddExercise
+from .forms import AddExercise, CreateUser
 
 
 # Create your views here.
@@ -43,3 +43,15 @@ def add_exercise(request):
     else:
         form = AddExercise()
     return render(request, 'add_exercise.html', {'form': form})
+
+
+def register_user(request):
+    if request.method == "POST":
+        form = CreateUser(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect("login")
+    else:
+        form = CreateUser()
+    return render(request, 'register.html', {'form': form})

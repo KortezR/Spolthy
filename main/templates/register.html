@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'main/css/style-catalog.css' %}" />
+  <link rel="stylesheet" href="{% static 'main/css/style-exercise_add.css' %}" />
+{% endblock %}
+
+{% block title %}
+  Регистрация в Spolthy
+{% endblock %}
+
+{% block content %}
+<h2 class="centered">Регистрация</h2>
+<div class="content">
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_div }}
+    <button class="button" type="submit">Зарегистрироваться</button>
+</form>
+</div>
+{% endblock  %}

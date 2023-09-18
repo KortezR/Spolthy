@@ -55,6 +55,7 @@ body {
     flex-grow: 1;
     width: 70rem;
     margin: 0 auto;
+    text-shadow: 2px 2px 1px black;
 }
 
 img {
@@ -72,7 +73,6 @@ header {
 header>div a {
     color: orange;
     text-decoration: none;
-    margin-right: 2rem;
 }
 
 .logo {
@@ -85,9 +85,15 @@ header>div a {
     gap: 60px;
 }
 
+.middle-elements{
+    display: flex;
+    gap: 5px;
+}
+
 .right-elements {
     display: flex;
-    gap: 10px;
+    gap: 2rem;
+    margin-right: 1rem;
 }
 
 footer {

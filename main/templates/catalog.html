@@ -39,8 +39,13 @@
       </div>
     </div>
   {% endfor %}
-  <div class="footer">
-    <p>Не нашли упражнение? Добавьте новое упражнение</p>
-    <a class="button" href="{% url 'add_exercise' %}">Добавить упражнение</a>
-  </div>
+  {% if not exercises %}
+    <p>По Вашему запросу упражнения не найдены</p>
+  {% endif %}
+  {% if user.is_authenticated %}
+    <div class="footer">
+      <p>Не нашли упражнение? Добавьте новое упражнение</p>
+      <a class="button" href="{% url 'add_exercise' %}">Добавить упражнение</a>
+    </div>
+  {% endif %}
 {% endblock %}
