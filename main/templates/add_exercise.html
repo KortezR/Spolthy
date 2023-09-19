@@ -4,7 +4,6 @@
 {% block styles %}
   <link rel="stylesheet" href="{% static 'main/css/style-catalog.css' %}" />
   <link rel="stylesheet" href="{% static 'main/css/style-exercise_add.css' %}" />
-  <link rel="stylesheet" href="{% static 'main/css/style-register.css' %}" />
 {% endblock %}
 
 {% block title %}
@@ -24,5 +23,7 @@
 {% else %}
 <p>Только зарегистрированные пользователи могут добавлять упражнения</p>
 <a class='button' href="{% url 'login' %}?next={{request.path}}">Вход</a>
+<p></p>
+<a class='button' href="{% url 'register' %}">Регистрация</a>
 {% endif %}
 {% endblock  %}

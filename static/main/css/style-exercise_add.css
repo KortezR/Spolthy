@@ -19,3 +19,12 @@ input {
 textarea {
     width: 30rem;
 }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+}
+
+.errorlist{
+    color: red;
+}
