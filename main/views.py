@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from .models import Exercise
 from urllib.parse import unquote
 from .forms import AddExercise, CreateUser
@@ -39,6 +40,8 @@ def add_exercise(request):
 
         if form.is_valid():
             form.save()
+            name = form.cleaned_data['name']
+            messages.success(request, f'Упражнение "{name}" успешно добавлено')
             return redirect("catalog")
     else:
         form = AddExercise()
@@ -51,6 +54,8 @@ def register_user(request):
 
         if form.is_valid():
             form.save()
+            username = form.cleaned_data['username']
+            messages.success(request, f'Пользователь {username} успешно создан')
             return redirect("login")
     else:
         form = CreateUser()

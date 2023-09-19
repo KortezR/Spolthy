@@ -4,6 +4,7 @@
 {% block styles %}
   <link rel="stylesheet" href="{% static 'main/css/style-catalog.css' %}" />
   <link rel="stylesheet" href="{% static 'main/css/style-exercise_add.css' %}" />
+  <link rel="stylesheet" href="{% static 'main/css/style-register.css' %}" />
 {% endblock %}
 
 {% block title %}
@@ -11,12 +12,21 @@
 {% endblock %}
 
 {% block content %}
-<h2 class="centered">Регистрация</h2>
-<div class="content">
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_div }}
-    <button class="button" type="submit">Зарегистрироваться</button>
-</form>
-</div>
-{% endblock  %}
+  <h2 class="centered">Регистрация</h2>
+  <div class="content">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% for field in form %}
+        <div>{{ field.label }}</div>
+        {% if field.help_text %}
+        <div>{{field.help_text}}</div>
+        {% endif %}
+        <div>{{ field }}</div>
+        {% if field.errors %}
+        <div style="color: red;">{{field.errors}}</div>
+      {% endif %}
+      {% endfor %}
+      <button class="button" type="submit">Зарегистрироваться</button>
+    </form>
+  </div>
+{% endblock %}

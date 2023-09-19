@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from .models import Exercise
 
 
@@ -28,19 +29,14 @@ class AddExercise(forms.ModelForm):
 class CreateUser(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['password1'].label = 'Пароль'
-        self.fields['password2'].label = 'Подтвердите пароль'
-
-        self.fields['password1'].help_text = 'Минимум 8 символов, не может состоять только из цифр'
-        self.fields['password2'].help_text = 'Введите пароль еще раз для подтверждения'
+        self.fields['email'].required = True
 
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
-        labels = {
-            'username': 'Имя пользователя',
-            'email': 'Электронная почта',
-        }
-        help_texts = {
-            'username': 'Обязательное поле. Максимум 150 символов. Только буквы, цифры и @/./+/-/_',
-        }
+
+    def clean_email(self):
+        raw_email = self.cleaned_data['email']
+        if User.objects.filter(email=raw_email).exists():
+            raise ValidationError("Пользователь с данным адресом электронной почты уже существует.")
+        return raw_email

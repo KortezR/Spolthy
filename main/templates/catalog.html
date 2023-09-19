@@ -10,6 +10,9 @@
 {% endblock %}
 
 {% block content %}
+  {% for message in messages %}
+    <p class="centered tag">{{ message }}</p>
+  {% endfor %}
   <h1 class="centered title">Каталог упражнений Spolthy</h1>
   <form class="search" action="{% url 'catalog' %}" method="get">
     <div class="search-field">
@@ -42,10 +45,8 @@
   {% if not exercises %}
     <p>По Вашему запросу упражнения не найдены</p>
   {% endif %}
-  {% if user.is_authenticated %}
-    <div class="footer">
-      <p>Не нашли упражнение? Добавьте новое упражнение</p>
-      <a class="button" href="{% url 'add_exercise' %}">Добавить упражнение</a>
-    </div>
-  {% endif %}
+  <div class="footer">
+    <p>Не нашли упражнение? Добавьте новое упражнение</p>
+    <a class="button" href="{% url 'add_exercise' %}">Добавить упражнение</a>
+  </div>
 {% endblock %}
