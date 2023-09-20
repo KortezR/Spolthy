@@ -6,15 +6,15 @@
 {% endblock %}
 
 {% block title %}
-  Каталог Spolthy
+  Мои упражнения - Spolthy
 {% endblock %}
 
 {% block content %}
   {% for message in messages %}
     <p class="centered tag">{{ message }}</p>
   {% endfor %}
-  <h1 class="centered title">Каталог упражнений Spolthy</h1>
-  <form class="search" action="{% url 'catalog' %}" method="get">
+  <h1 class="centered title">Мои упражнения</h1>
+  <form class="search" action="{% url 'my_exercises' %}" method="get">
     <div class="search-field">
       <input type="text" name="search" placeholder="Поиск по названию упражнения" />
       <button type="submit">Поиск</button>
@@ -28,35 +28,20 @@
       {% endfor %}
     </div>
   </form>
-  {% for exercise in exercises %}
+  {% for user_exercise in user_exercises %}
     <div class="content item">
       <div class="media">
-        <img src="{{ exercise.media.url }}" />
+        <img src="{{ user_exercise.exercise.media.url }}" />
       </div>
       <div class="exercise">
-        <a href="{% url 'exercise' exercise.id %}"><h2>{{ exercise.name|capfirst }}</h2></a>
+        <a href="{% url 'exercise' user_exercise.exercise.id %}"><h2>{{ user_exercise.exercise.name|capfirst }}</h2></a>
         <div class="category">
-          <div>{{ exercise.get_category_display }}</div>
+          <div>{{ user_exercise.exercise.get_category_display }}</div>
         </div>
-        {% if user.is_authenticated %}
-        {% if exercise.id in exercise_ids %}
-        <a class="button tag" href="#">Уже на аккаунте</a>
-        {% else %}
-        <form method="post">
-          {% csrf_token %}
-          <input type="hidden" name='' value=''>
-          <button class="button" type="submit">Добавить на аккаунт</button>
-        </form>
-        {% endif %}
-        {% endif %}
       </div>
     </div>
   {% endfor %}
-  {% if not exercises %}
+  {% if not user_exercises %}
     <p>По Вашему запросу упражнения не найдены</p>
   {% endif %}
-  <div class="footer">
-    <p>Не нашли упражнение? Добавьте новое упражнение</p>
-    <a class="button" href="{% url 'add_exercise' %}">Добавить упражнение</a>
-  </div>
 {% endblock %}

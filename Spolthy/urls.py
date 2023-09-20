@@ -27,7 +27,8 @@ urlpatterns = [
     path("catalog/", main_views.catalog, name='catalog'),
     path('exercises/<int:exercise_id>/', main_views.exercise, name='exercise'),
     path('exercises/add/', main_views.add_exercise, name='add_exercise'),
-    path('accounts/register', main_views.register_user, name='register')
+    path('accounts/register', main_views.register_user, name='register'),
+    path('my_exercises/', main_views.my_exercises, name='my_exercises')
 ]
 
 urlpatterns += [

@@ -30,7 +30,7 @@
           {{user.get_username }}
         </div>
         <div>
-          <a href="#">Мои упражнения</a>
+          <a href="{% url 'my_exercises' %}">Мои упражнения</a>
         </div>
         <div>
           <a href="{% url 'logout' %}?next={% url 'main_page'%}">Выход</a>
