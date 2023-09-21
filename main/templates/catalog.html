@@ -44,7 +44,7 @@
         {% else %}
         <form method="post">
           {% csrf_token %}
-          <input type="hidden" name='' value=''>
+          <input type="hidden" name='exercise_id' value={{exercise.id}}>
           <button class="button" type="submit">Добавить на аккаунт</button>
         </form>
         {% endif %}

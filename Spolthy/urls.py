@@ -28,7 +28,8 @@ urlpatterns = [
     path('exercises/<int:exercise_id>/', main_views.exercise, name='exercise'),
     path('exercises/add/', main_views.add_exercise, name='add_exercise'),
     path('accounts/register', main_views.register_user, name='register'),
-    path('my_exercises/', main_views.my_exercises, name='my_exercises')
+    path('my_exercises/', main_views.my_exercises, name='my_exercises'),
+    path('my_exercises/edit/<int:user_exercise_id>/', main_views.edit_user_uxercise, name='edit_user_exercise')
 ]
 
 urlpatterns += [

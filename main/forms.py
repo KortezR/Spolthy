@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from .models import Exercise
+from .models import Exercise, UserExercise
 
 
 class AddExercise(forms.ModelForm):
@@ -40,3 +40,16 @@ class CreateUser(UserCreationForm):
         if User.objects.filter(email=raw_email).exists():
             raise ValidationError("Пользователь с данным адресом электронной почты уже существует.")
         return raw_email
+
+
+class EditUserExercise(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['weight'].required = False
+        self.fields['distance'].required = False
+        self.fields['amount'].required = False
+        self.fields['time'].required = False
+
+    class Meta:
+        model = UserExercise
+        fields = ('weight', 'distance', 'amount', 'time')

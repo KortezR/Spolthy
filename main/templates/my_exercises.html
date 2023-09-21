@@ -38,10 +38,28 @@
         <div class="category">
           <div>{{ user_exercise.exercise.get_category_display }}</div>
         </div>
+        {% if user_exercise.weight %}
+        <div>Вес: {{user_exercise.weight}}кг</div>
+        {% endif %}
+        {% if user_exercise.distance %}
+        <div>Дистанция: {{user_exercise.distance}}км</div>
+        {% endif %}
+        {% if user_exercise.amount %}
+        <div>Повторения: {{user_exercise.amount}} раз</div>
+        {% endif %}
+        {% if user_exercise.time %}
+        <div>Время: {{user_exercise.time}}</div>
+        {% endif %}
+        <a class="button" href="{% url 'edit_user_exercise' user_exercise.id %}">Изменить показатели</a>
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name='user_exercise_id' value={{user_exercise.id}}>
+          <button class="button" style="background: red;" type="submit">Удалить с аккаунта</button>
+        </form>
       </div>
     </div>
   {% endfor %}
   {% if not user_exercises %}
-    <p>По Вашему запросу упражнения не найдены</p>
+    <p>По Вашему запросу упражнения не найдены либо список Ваших упражнений пуст</p>
   {% endif %}
 {% endblock %}

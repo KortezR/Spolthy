@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'main/css/style-catalog.css' %}" />
+  <link rel="stylesheet" href="{% static 'main/css/style-exercise.css' %}" />
+  <link rel="stylesheet" href="{% static 'main/css/style-exercise_add.css' %}" />
+{% endblock %}
+
+{% block title %}
+  Изменение показателей - Spolthy
+{% endblock %}
+
+{% block content %}
+  <h2 class="centered">Изменение показателей упражнения</h2>
+  <div class="content item">
+    <h2 class="centered">{{ user_exercise.exercise.name|capfirst }}</h2>
+    <div class="exercise">
+      <div>Текущие значения:</div>
+      {% if user_exercise.weight %}
+        <div>Вес: {{user_exercise.weight}}кг</div>
+        {% endif %}
+        {% if user_exercise.distance %}
+        <div>Дистанция: {{user_exercise.distance}}км</div>
+        {% endif %}
+        {% if user_exercise.amount %}
+        <div>Повторения: {{user_exercise.amount}} раз</div>
+        {% endif %}
+        {% if user_exercise.time %}
+        <div>Время: {{user_exercise.time}}</div>
+        {% endif %}
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+          <div>{{ field.label }}</div>
+          {% if field.help_text %}
+            <div>{{ field.help_text }}</div>
+          {% endif %}
+          <div>{{ field }}</div>
+          {% if field.errors %}
+            <div style="color: red;">{{ field.errors }}</div>
+          {% endif %}
+        {% endfor %}
+        <button class="button" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
