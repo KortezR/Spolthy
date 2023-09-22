@@ -45,17 +45,23 @@
         <div>Дистанция: {{user_exercise.distance}}км</div>
         {% endif %}
         {% if user_exercise.amount %}
-        <div>Повторения: {{user_exercise.amount}} раз</div>
+        <div>Повторения: {{user_exercise.amount}} раз(а)</div>
         {% endif %}
         {% if user_exercise.time %}
         <div>Время: {{user_exercise.time}}</div>
         {% endif %}
-        <a class="button" href="{% url 'edit_user_exercise' user_exercise.id %}">Изменить показатели</a>
-        <form method="post">
-          {% csrf_token %}
-          <input type="hidden" name='user_exercise_id' value={{user_exercise.id}}>
-          <button class="button" style="background: red;" type="submit">Удалить с аккаунта</button>
-        </form>
+        <div class="choices">
+          <div>
+            <a class="button" href="{% url 'edit_user_exercise' user_exercise.id %}">Изменить показатели</a>
+          </div>
+          <div>
+            <form method="post">
+              {% csrf_token %}
+              <input type="hidden" name='user_exercise_id' value={{user_exercise.id}}>
+              <button class="button" style="background: red;" type="submit">Удалить с аккаунта</button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   {% endfor %}

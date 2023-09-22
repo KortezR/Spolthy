@@ -28,6 +28,9 @@
       {% endfor %}
     </div>
   </form>
+  <div class='refresh'>
+    <a href="{% url 'catalog'%}">Очистить поиск</a>
+  </div>
   {% for exercise in exercises %}
     <div class="content item">
       <div class="media">
@@ -56,7 +59,18 @@
     <p>По Вашему запросу упражнения не найдены</p>
   {% endif %}
   <div class="footer">
+    {% if user.is_authenticated %}
     <p>Не нашли упражнение? Добавьте новое упражнение</p>
     <a class="button" href="{% url 'add_exercise' %}">Добавить упражнение</a>
+    {% else %}
+    <p>Войдите в аккаунт для менеджмента и добавления упражнений</p>
+    <div class="choices"><div>
+      <a class="button" href="{% url 'register' %}">Зарегистрироваться</a>
+    </div>
+    <div>
+      <a class="button" href="{% url 'login' %}">Войти</a>
+    </div>
+    {% endif %}
+  </div>
   </div>
 {% endblock %}

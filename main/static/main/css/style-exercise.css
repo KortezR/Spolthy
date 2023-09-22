@@ -33,3 +33,7 @@ pre {
     white-space: pre-wrap;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+img {
+    max-width: none;
+}

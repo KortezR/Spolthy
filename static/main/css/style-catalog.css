@@ -25,11 +25,6 @@
     flex: 1;
 }
 
-.exercise>.button {
-    text-shadow: none;
-    margin: 0;
-}
-
 .exercise>p {
     text-overflow: ellipsis;
     overflow: hidden;
@@ -52,7 +47,7 @@
 .search {
     display: flex;
     gap: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     flex-direction: column;
 }
 
@@ -110,4 +105,21 @@ button {
 
 .exercise>a {
     color: white
+}
+
+.choices {
+    display: flex;
+    flex-direction: row;
+    gap: 10rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.refresh {
+    margin-bottom: 1rem;
+}
+
+.refresh>a{
+    color: orange;
+    text-decoration: none;
 }

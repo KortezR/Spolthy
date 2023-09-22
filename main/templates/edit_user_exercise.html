@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="{% static 'main/css/style-catalog.css' %}" />
   <link rel="stylesheet" href="{% static 'main/css/style-exercise.css' %}" />
   <link rel="stylesheet" href="{% static 'main/css/style-exercise_add.css' %}" />
+  <link rel="stylesheet" href="{% static 'main/css/style-edit_ue.css' %}" />
 {% endblock %}
 
 {% block title %}
@@ -14,21 +15,27 @@
 {% block content %}
   <h2 class="centered">Изменение показателей упражнения</h2>
   <div class="content item">
-    <h2 class="centered">{{ user_exercise.exercise.name|capfirst }}</h2>
     <div class="exercise">
+      <a href="{% url 'exercise' user_exercise.exercise.id %}"><h2>{{ user_exercise.exercise.name|capfirst }}</h2></a>
       <div>Текущие значения:</div>
-      {% if user_exercise.weight %}
-        <div>Вес: {{user_exercise.weight}}кг</div>
+      {% if user_exercise.weight or user_exercise.distance or user_exercise.amount or user_exercise.time %}
+        {% if user_exercise.weight %}
+          <div>Вес: {{ user_exercise.weight }}кг</div>
         {% endif %}
         {% if user_exercise.distance %}
-        <div>Дистанция: {{user_exercise.distance}}км</div>
+          <div>Дистанция: {{ user_exercise.distance }}км</div>
         {% endif %}
         {% if user_exercise.amount %}
-        <div>Повторения: {{user_exercise.amount}} раз</div>
+          <div>Повторения: {{ user_exercise.amount }} раз(а)</div>
         {% endif %}
         {% if user_exercise.time %}
-        <div>Время: {{user_exercise.time}}</div>
+          <div>Время: {{ user_exercise.time }}</div>
         {% endif %}
+      {% else %}
+        <div>Нет установленных значений</div>
+      {% endif %}
+      <div>----------------------------------------</div>
+      <div>Новые значения:</div>
       <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {% for field in form %}

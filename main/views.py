@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
 from .models import Exercise, UserExercise
 from urllib.parse import unquote
 from .forms import AddExercise, CreateUser, EditUserExercise
@@ -84,6 +85,9 @@ def add_exercise(request):
 
 
 def register_user(request):
+    if request.user.is_authenticated:
+        messages.error(request, 'Для регистрации нового пользователя выйдите с аккаунта')
+        return redirect('catalog')
     if request.method == "POST":
         form = CreateUser(request.POST)
 
@@ -124,7 +128,13 @@ def my_exercises(request):
 
 
 def edit_user_uxercise(request, user_exercise_id):
-    user_exercise = UserExercise.objects.get(id=user_exercise_id)
+    if not request.user.is_authenticated:
+        return redirect('main_page')
+    try:
+        user_exercise = UserExercise.objects.get(id=user_exercise_id, user=request.user)
+    except ObjectDoesNotExist:
+        messages.error(request, "Ошибка доступа")
+        return redirect('my_exercises')
     if request.method == "POST":
         form = EditUserExercise(request.POST)
 
