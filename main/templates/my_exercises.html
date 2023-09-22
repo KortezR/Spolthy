@@ -28,6 +28,9 @@
       {% endfor %}
     </div>
   </form>
+  <div class='refresh'>
+    <a href="{% url 'my_exercises' %}">Очистить поиск</a>
+  </div>
   {% for user_exercise in user_exercises %}
     <div class="content item">
       <div class="media">
