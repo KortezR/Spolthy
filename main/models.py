@@ -16,6 +16,7 @@ class Exercise(models.Model):
 
     class Meta:
         verbose_name = 'Упражнение'
+        verbose_name_plural = 'Упражнения'
 
 
 class UserExercise(models.Model):
@@ -29,4 +30,5 @@ class UserExercise(models.Model):
 
     class Meta:
         verbose_name = 'Упражнение пользователя'
+        verbose_name_plural = 'Упражнения пользователей'
         unique_together = ('user', 'exercise',)
