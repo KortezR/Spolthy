@@ -32,3 +32,13 @@ class UserExercise(models.Model):
         verbose_name = 'Упражнение пользователя'
         verbose_name_plural = 'Упражнения пользователей'
         unique_together = ('user', 'exercise',)
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    height = models.FloatField(null=True, verbose_name="Ваш рост")
+    weight = models.FloatField(null=True, verbose_name="Ваш вес")
+    chest_girth = models.FloatField(null=True, verbose_name="Обхват груди")
+    arm_girth = models.FloatField(null=True, verbose_name="Обхват рук")
+    waist_girth = models.FloatField(null=True, verbose_name="Обхват талии")
+    hip_girth = models.FloatField(null=True, verbose_name="Обхват бедер")

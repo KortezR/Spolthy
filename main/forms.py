@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from .models import Exercise, UserExercise
+from .models import Exercise, UserExercise, Profile
 
 
 class AddExercise(forms.ModelForm):
@@ -53,3 +53,18 @@ class EditUserExercise(forms.ModelForm):
     class Meta:
         model = UserExercise
         fields = ('weight', 'distance', 'amount', 'time')
+
+
+class EditProfile(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['height'].required = False
+        self.fields['weight'].required = False
+        self.fields['chest_girth'].required = False
+        self.fields['arm_girth'].required = False
+        self.fields['waist_girth'].required = False
+        self.fields['hip_girth'].required = False
+
+    class Meta:
+        model = Profile
+        fields = ('height', 'weight', 'chest_girth', 'arm_girth', 'waist_girth', 'hip_girth')

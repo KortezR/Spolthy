@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'main/css/style-catalog.css' %}" />
+{% endblock %}
+
+{% block title %}
+  Мой профиль - Spolthy
+{% endblock %}
+
+{% block content %}
+  {% for message in messages %}
+    <p class="centered tag">{{ message }}</p>
+  {% endfor %}
+  <h1 class="centered title">Мой профиль</h1>
+    <div class="content item">
+      <div class="exercise">
+        <div>Рост: {% if user_profile.height %}{{user_profile.height}}м{% endif %}</div>
+        <div>Вес: {% if user_profile.weight %}{{user_profile.weight}}кг{% endif %}</div>
+        <div>Обхват груди: {% if user_profile.chest_girth %}{{user_profile.chest_girth}}см{% endif %}</div>
+        <div>Обхват рук: {% if user_profile.arm_girth %}{{user_profile.arm_girth}}см{% endif %}</div>
+        <div>Обхват талии: {% if user_profile.waist_girth %}{{user_profile.waist_girth}}см{% endif %}</div>
+        <div>Обхват бедер: {% if user_profile.hip_girth %}{{user_profile.hip_girth}}см{% endif %}</div>
+        <div class="choices">
+          <div>
+            <a class="button" href="{% url 'edit_profile' %}">Изменить замеры</a>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

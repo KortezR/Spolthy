@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'main/css/style-catalog.css' %}" />
+  <link rel="stylesheet" href="{% static 'main/css/style-exercise.css' %}" />
+  <link rel="stylesheet" href="{% static 'main/css/style-exercise_add.css' %}" />
+  <link rel="stylesheet" href="{% static 'main/css/style-edit_ue.css' %}" />
+{% endblock %}
+
+{% block title %}
+  Редактирование профиля - Spolthy
+{% endblock %}
+
+{% block content %}
+  <h2 class="centered">Редактирование профиля</h2>
+  <div class="content item">
+    <div>Текущие значения:</div>
+    <div>Рост: {% if user_profile.height %}{{user_profile.height}}м{% endif %}</div>
+    <div>Вес: {% if user_profile.weight %}{{user_profile.weight}}кг{% endif %}</div>
+    <div>Обхват груди: {% if user_profile.chest_girth %}{{user_profile.chest_girth}}см{% endif %}</div>
+    <div>Обхват рук: {% if user_profile.arm_girth %}{{user_profile.arm_girth}}см{% endif %}</div>
+    <div>Обхват талии: {% if user_profile.waist_girth %}{{user_profile.waist_girth}}см{% endif %}</div>
+    <div>Обхват бедер: {% if user_profile.hip_girth %}{{user_profile.hip_girth}}см{% endif %}</div>
+    <div>----------------------------------------</div>
+    <div>Новые значения:</div>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+          <div>{{ field.label }}</div>
+          {% if field.help_text %}
+            <div>{{ field.help_text }}</div>
+          {% endif %}
+          <div>{{ field }}</div>
+          {% if field.errors %}
+            <div style="color: red;">{{ field.errors }}</div>
+          {% endif %}
+        {% endfor %}
+        <button class="button" type="submit">Сохранить</button>
+      </form>
+    </div>
+{% endblock %}

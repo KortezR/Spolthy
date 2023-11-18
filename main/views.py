@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
-from .models import Exercise, UserExercise
+from .models import Exercise, UserExercise, Profile
 from urllib.parse import unquote
-from .forms import AddExercise, CreateUser, EditUserExercise
+from .forms import AddExercise, CreateUser, EditUserExercise, EditProfile
 
 
 def exercise_search(search_name, search_category, exercises):
@@ -32,6 +32,7 @@ def catalog(request):
     categories = Exercise.EXCERCISE_CATEGORIES
     exercise_ids = []
     if request.user.is_authenticated:
+
         if request.method == 'POST':
             exercise_id = request.POST['exercise_id']
             exercise_get = Exercise.objects.get(id=exercise_id)
@@ -39,14 +40,18 @@ def catalog(request):
             messages.success(request, f'Упражнение "{exercise_get.name}" успешно добавлено на аккаунт')
             return redirect('catalog')
         user_exercises = UserExercise.objects.filter(user=request.user)
+
         for user_exercise in user_exercises:
             exercise_ids.append(user_exercise.exercise_id)
+
     if request.GET:
         exercises = exercise_search(unquote(request.GET['search']),
                                     request.GET.get('category', ''),
                                     Exercise.objects.all())
+
     else:
         exercises = Exercise.objects.all()
+
     return render(request, 'catalog.html', {'exercises': exercises, 'categories': categories, 'exercise_ids': exercise_ids})
 
 
@@ -90,7 +95,6 @@ def register_user(request):
         return redirect('catalog')
     if request.method == "POST":
         form = CreateUser(request.POST)
-
         if form.is_valid():
             form.save()
             username = form.cleaned_data['username']
@@ -129,6 +133,7 @@ def my_exercises(request):
 
 def edit_user_uxercise(request, user_exercise_id):
     if not request.user.is_authenticated:
+        messages.error(request, "Вы не авторизованы")
         return redirect('main_page')
     try:
         user_exercise = UserExercise.objects.get(id=user_exercise_id, user=request.user)
@@ -149,3 +154,42 @@ def edit_user_uxercise(request, user_exercise_id):
     else:
         form = EditUserExercise(instance=user_exercise)
     return render(request, 'edit_user_exercise.html', {'user_exercise': user_exercise, 'form': form})
+
+
+def profile(request):
+    if not request.user.is_authenticated:
+        messages.error(request, "Вы не авторизованы")
+        return redirect('main_page')
+    try:
+        user_profile = Profile.objects.get(user=request.user)
+    except ObjectDoesNotExist:
+        messages.error(request, "Ошибка доступа")
+        return redirect('catalog')
+    return render(request, 'profile.html', {'user_profile': user_profile})
+
+
+def edit_profile(request):
+    if not request.user.is_authenticated:
+        messages.error(request, "Вы не авторизованы")
+        return redirect('main_page')
+    try:
+        user_profile = Profile.objects.get(user=request.user)
+    except ObjectDoesNotExist:
+        messages.error(request, "Ошибка")
+        return redirect('main_page')
+    if request.method == "POST":
+        form = EditProfile(request.POST)
+
+        if form.is_valid():
+            user_profile.height = change_field(request.POST['height'])
+            user_profile.weight = change_field(request.POST['weight'])
+            user_profile.chest_girth = change_field(request.POST['chest_girth'])
+            user_profile.arm_girth = change_field(request.POST['arm_girth'])
+            user_profile.waist_girth = change_field(request.POST['waist_girth'])
+            user_profile.hip_girth = change_field(request.POST['hip_girth'])
+            user_profile.save()
+            messages.success(request, 'Ваш профиль успешно изменен')
+            return redirect("profile")
+    else:
+        form = EditProfile(instance=user_profile)
+    return render(request, 'edit_profile.html', {'user_profile': user_profile, 'form': form})
